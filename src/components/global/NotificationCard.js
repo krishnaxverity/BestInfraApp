@@ -78,9 +78,7 @@ const NotificationCard = ({
             { backgroundColor: variantStyles.iconBgColor },
             iconContainerStyle
           ]}>
-            {/* Assuming icon is an SVG component or a similar structure */}
-            {/* For now, we'll just render the icon prop directly */}
-            {icon}
+            {React.createElement(icon, { width: 16, height: 16 })}
           </View>
         )}
       </View>

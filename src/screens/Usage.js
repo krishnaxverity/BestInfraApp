@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Pressable, ScrollView, StatusBar } from "react-native";
 import React from "react";
 import { COLORS } from "../constants/colors";
 import Menu from "../../assets/icons/bars.svg";
@@ -31,8 +31,15 @@ const Usage = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.usageText}>Usage</Text>
+      
+      <View style={styles.contentContainer}>
+        <View style={styles.welcomeCard}>
+          <Text style={styles.welcomeTitle}>Usage</Text>
+          <Text style={styles.welcomeSubtitle}>Welcome to Usage Management</Text>
+          <Text style={styles.welcomeDescription}>
+            Track your electricity consumption and usage patterns here.
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
