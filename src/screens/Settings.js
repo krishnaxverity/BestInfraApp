@@ -32,7 +32,7 @@ const Settings = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.usageText}>Settings</Text>
+        <Text style={styles.usageText}> Welcome to Settings page</Text>
       </View>
     </ScrollView>
   );
@@ -97,5 +97,8 @@ const styles = StyleSheet.create({
     color: COLORS.primaryFontColor,
     fontFamily: "Manrope-Medium",
     fontSize: 16,
+    textAlign: "center",
+    paddingTop:0,
+    marginTop:30,
   },
 });

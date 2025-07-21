@@ -31,16 +31,10 @@ const Usage = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-      
-      <View style={styles.contentContainer}>
-        <View style={styles.welcomeCard}>
-          <Text style={styles.welcomeTitle}>Usage</Text>
-          <Text style={styles.welcomeSubtitle}>Welcome to Usage Management</Text>
-          <Text style={styles.welcomeDescription}>
-            Track your electricity consumption and usage patterns here.
-          </Text>
-        </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.usageText}> Welcome to Usage page</Text>
       </View>
+
     </ScrollView>
   );
 };
@@ -104,5 +98,7 @@ const styles = StyleSheet.create({
     color: COLORS.primaryFontColor,
     fontFamily: "Manrope-Medium",
     fontSize: 16,
+    textAlign: "center",
+    marginTop:30,
   },
 });

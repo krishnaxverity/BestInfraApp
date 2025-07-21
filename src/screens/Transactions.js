@@ -32,7 +32,7 @@ const Transactions = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.usageText}>Transactions</Text>
+        <Text style={styles.usageText}> Welcome to Transactions page</Text>
       </View>
     </ScrollView>
   );
@@ -97,5 +97,7 @@ const styles = StyleSheet.create({
     color: COLORS.primaryFontColor,
     fontFamily: "Manrope-Medium",
     fontSize: 16,
+    textAlign: "center",
+    marginTop:30,
   },
 });
