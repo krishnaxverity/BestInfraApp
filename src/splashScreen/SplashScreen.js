@@ -82,7 +82,7 @@ const SplashScreen = () => {
     };
     checkLoginStatus();
   }, []);
-
+// this is the splash screen
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
