@@ -15,7 +15,7 @@ import BiLogo from "../../assets/icons/LogoWhite.svg";
 import { COLORS } from "../constants/colors";
 import OnBoardingSlides from "../components/OnBoardingSlides";
 import RippleEffect from "../components/RippleEffect";
-import { Button } from "../components/global";
+import Button from "../components/global/Button";
 
 const OnBoarding = ({ navigation }) => {
   const moveAnim = useRef(new Animated.Value(20)).current;

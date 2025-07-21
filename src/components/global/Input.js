@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   // Input styles
   input: {
     flex: 1,
-    paddingHorizontal: 12,
+    // paddingHorizontal: 12,
     color: '#6e6e6e',
     fontSize: 14,
     fontFamily: 'Manrope-Regular',

@@ -6,7 +6,7 @@ import {
   Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Button } from "../components/global";
+import Button from "../components/global/Button";
 
 const screenHeight = Dimensions.get("window").height;
 

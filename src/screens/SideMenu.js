@@ -15,6 +15,7 @@ import { BlurView } from "expo-blur";
 import { useContext } from "react";
 import { TabContext } from "../context/TabContext"; 
 import SideMenuNavigation from "../components/SideMenuNavigation";
+import Logo from "../components/global/Logo";
 
 const SideMenu = ({ navigation }) => {
   const { activeItem, setActiveItem } = useContext(TabContext);
@@ -55,7 +56,8 @@ const SideMenu = ({ navigation }) => {
           <Menu width={18} height={18} fill="#ffffff" />
         </View>
         <Pressable onPress={() => navigation.navigate("Dashboard")}>
-          <BiLogo width={45} height={45} />
+          {/* <BiLogo width={45} height={45} /> */}
+          <Logo variant="white" size="medium" />
         </Pressable>
         <Pressable style={styles.bellIcon} onPress={() => navigation.navigate("Profile")}>
           <Notification width={18} height={18} fill="#000" />

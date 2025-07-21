@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   // Size variants
   small: {
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     minHeight: 36,
   },
   medium: {

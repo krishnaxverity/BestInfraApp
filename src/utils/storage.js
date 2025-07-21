@@ -5,7 +5,7 @@ export const storeUser = async (user) => {
   try {
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (e) {
-    console.log("Error saving user data", e);
+    // Silent error handling for production
   }
 };
 
@@ -14,7 +14,6 @@ export const getUser = async () => {
     const userData = await AsyncStorage.getItem('user');
     return userData != null ? JSON.parse(userData) : { name: "Guest" };
   } catch (e) {
-    console.log("Error retrieving user data", e);
     return { name: "Guest" };
   }
 };
@@ -23,6 +22,6 @@ export const logoutUser = async () => {
   try {
     await AsyncStorage.removeItem('user');
   } catch (e) {
-    console.log("Error logging out", e);
+    // Silent error handling for production
   }
 };

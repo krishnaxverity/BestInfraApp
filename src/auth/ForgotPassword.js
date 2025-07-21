@@ -4,8 +4,10 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  Alert,
 } from "react-native";
-import { Button, Input } from "./global";
+import Button from "../components/global/Button";
+import Input from "../components/global/Input";
 
 const screenHeight = Dimensions.get("window").height;
 
@@ -15,7 +17,7 @@ const ForgotPassword = ({ navigation }) => {
   const handleForgotPassword = async () => {
     try {
       if (!email) {
-        alert("Please enter your email");
+        Alert.alert("Error", "Please enter your email");
         return;
       }
 
@@ -29,21 +31,19 @@ const ForgotPassword = ({ navigation }) => {
       );
 
       const data = await response.json();
-      console.log("Backend response:", data);
 
       if (data.status === "success") {
-        alert("If this email exists, you will receive reset instructions.");
+        Alert.alert("Success", "If this email exists, you will receive reset instructions.");
       } else {
-        alert(data.message);
+        Alert.alert("Error", data.message);
       }
     } catch (err) {
-      console.error("Network or server error:", err);
-      alert("Something went wrong. Please try again.");
+      Alert.alert("Error", "Something went wrong. Please try again.");
     }
   };
 
   return (
-    <View style={styles.Maincontainer}>
+    <View style={styles.mainContainer}>
       <View style={styles.container}>
         <Input
           label="Email Address"
@@ -71,10 +71,10 @@ const ForgotPassword = ({ navigation }) => {
 export default ForgotPassword;
 
 const styles = StyleSheet.create({
-  Maincontainer: {
-    height:"100%",
-    display:"flex",
-    justifyContent:"center",
+  mainContainer: {
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
   container: {
     backgroundColor: "#fff",

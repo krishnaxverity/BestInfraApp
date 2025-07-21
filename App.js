@@ -3,10 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
-import * as Linking from 'expo-linking';
 
-import SplashScreen from "./src/auth/SplashScreen";
-import OnBoarding from "./src/auth/OnBoarding";
+import SplashScreen from "./src/splashScreen/SplashScreen";
+import OnBoarding from "./src/screens/OnBoarding";
 import Login from "./src/auth/Login";
 import Dashboard from "./src/screens/Dashboard";
 import Profile from "./src/screens/Profile";
@@ -17,10 +16,9 @@ import Transactions from "./src/screens/Transactions";
 import Tickets from "./src/screens/Tickets";
 import Settings from "./src/screens/Settings";
 import { TabProvider } from "./src/context/TabContext";
-import ForgotPassword from "./src/components/ForgotPassword";
-import ResetPassword from "./src/components/ResetPassword";
+import ForgotPassword from "./src/auth/ForgotPassword";
+import ResetPassword from "./src/auth/ResetPassword";
 import GuestLogin from "./src/auth/GuestLogin";
-import ExampleUsage from "./src/components/global/ExampleUsage";
 
 const Stack = createNativeStackNavigator();
 
@@ -41,13 +39,13 @@ export default function App() {
   };
 
   const linking = {
-  prefixes: ['https://yourapp.com', 'yourapp://'],
-  config: {
-    screens: {
-      ResetPassword: 'reset-password',
+    prefixes: ['https://yourapp.com', 'yourapp://'],
+    config: {
+      screens: {
+        ResetPassword: 'reset-password',
+      },
     },
-  },
-};
+  };
 
   useEffect(() => {
     loadFonts();
@@ -136,11 +134,6 @@ export default function App() {
           <Stack.Screen
             name="GuestLogin"
             component={GuestLogin}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ExampleUsage"
-            component={ExampleUsage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -14,20 +14,20 @@ import Animated, {
 import { Easing } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Logo from "../components/global/Logo";
 
 const { width, height } = Dimensions.get("window");
 
-const RING_COUNT = 100; // Fewer rings = less visual clutter
-const RING_DELAY = 800; // Delay between rings (ms)
-const ANIMATION_DURATION = 5000; // Each ring expands for 5 seconds
+const RING_COUNT = 100; 
+const RING_DELAY = 800; 
+const ANIMATION_DURATION = 5000; 
 
-// ✅ Replace this with your actual AsyncStorage logic
+// Replace this with your actual AsyncStorage logic
 const getUser = async () => {
   try {
-    const userData = await AsyncStorage.getItem("user"); // Replace "user" with your actual key
+    const userData = await AsyncStorage.getItem("user"); 
     return userData ? JSON.parse(userData) : null;
   } catch (error) {
-    console.error("Error reading user data:", error);
     return null;
   }
 };
@@ -68,20 +68,13 @@ const SplashScreen = () => {
     );
   }, []);
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     navigation.navigate("OnBoarding");
-  //   }, 7000); // navigate after 7 seconds
-  //   return () => clearTimeout(timeout);
-  // }, []);
-
     // Check login status
   useEffect(() => {
     const checkLoginStatus = async () => {
       const user = await getUser();
       setTimeout(() => {
        if (user) {
-        navigation.replace("Dashboard"); // ✅ Use replace here
+        navigation.replace("Dashboard"); // Use replace here
       } else {
         navigation.replace("OnBoarding");
       }
@@ -103,7 +96,7 @@ const SplashScreen = () => {
         {Array.from({ length: RING_COUNT }).map((_, index) => (
           <Ring key={index} index={index} progress={progress} />
         ))}
-        <BiLogo width={80} height={80} />
+        <Logo variant="white" size="large" />
       </View>
     </View>
   );
@@ -126,9 +119,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 75,
-    // borderWidth: 6,
     borderWidth: 1,
-    // borderColor: "rgba(0, 224, 159, 0.3)",
     borderColor: "#BABECC66",
     opacity:0.2
   },

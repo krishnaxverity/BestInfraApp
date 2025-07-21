@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -12,15 +13,11 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
 import { COLORS } from "../constants/colors";
-import BiLogo from "../../assets/icons/LogoWhite.svg";
-import LoginForm from "../components/LoginForm";
-import axios from "axios";
-import * as SecureStore from "expo-secure-store";
-import jwtDecode from "jwt-decode";
+import LoginForm from "./LoginForm";
 import { storeUser } from "../utils/storage";
-import { Button } from "../components/global";
+import Button from "../components/global/Button";
+import Logo from "../components/global/Logo";
 
 const screenHeight = Dimensions.get("window").height;
 
@@ -28,58 +25,39 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (email === "krishnajayanth24@gmail.com" && password === "Jayanth@1") {
-      navigation.navigate("Dashboard");
-    } else {
-      alert("Invalid credentials. Please try again.");
+  const handleLogin = async () => {
+    setIsLoading(true);
+    
+    try {
+      if (email === "user123" && password === "pass123") {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const userData = {
+          name: "Demo User",
+          email: email,
+          uid: email
+        };
+        
+        await storeUser(userData);
+        navigation.navigate("Dashboard");
+      } else {
+        Alert.alert(
+          "Login Failed",
+          "Invalid credentials. Please use the dummy credentials or check your login details.",
+          [{ text: "OK" }]
+        );
+      }
+    } catch (error) {
+      Alert.alert(
+        "Login Error",
+        "Something went wrong. Please try again.",
+        [{ text: "OK" }]
+      );
+    } finally {
+      setIsLoading(false);
     }
-  };
-
-  // const handleLogin = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "http://192.168.1.33:3000/api/v1/auth/login",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           email: email,
-  //           password: password,
-  //           rememberMe: true,
-  //         }),
-  //       }
-  //     );
-
-  //     const json = await response.json();
-  //     if (!response.ok) {
-  //       console.error("🔴 Server returned error:", json);
-  //       alert(json.message || "Login failed. Please try again.");
-  //       return;
-  //     }
-  //     console.log("✅ Login successful:", json);
-  //     console.log(json.user.name); // ✅ This will log "Mobikins"
-  //     // ✅ Store user in AsyncStorage
-  //     await storeUser(json.user); // You can store the full user object or just a token
-  //     // Example: Navigate to Dashboard
-  //     // navigation.navigate("Dashboard", { userName: json.user.name });
-  //     navigation.navigate("Dashboard");
-  //   } catch (error) {
-  //     console.error("🛑 Network or parsing error:", error.message);
-  //     alert(
-  //       "Something went wrong. Please check your connection and try again."
-  //     );
-  //   }
-  // };
-
-  const getCookie = (name) => {
-    const cookie = document?.cookie
-      ?.split("; ")
-      ?.find((row) => row.startsWith(name + "="));
-    return cookie?.split("=")[1];
   };
 
   return (
@@ -92,7 +70,7 @@ const Login = ({ navigation }) => {
         style={{
           height: screenHeight * 0.2,
           width: "100%",
-          position: "absolute", // 🟢 Important
+          position: "absolute",
           top: 0,
           left: 0,
           right: 0,
@@ -113,7 +91,7 @@ const Login = ({ navigation }) => {
                 end={{ x: 1.2, y: 0.2 }}
                 style={styles.gradientBackground}
               >
-                <BiLogo width={60} height={60} />
+                <Logo variant="white" size="large" />
               </LinearGradient>
             </View>
 
@@ -137,6 +115,7 @@ const Login = ({ navigation }) => {
               setChecked={setChecked}
               handleLogin={handleLogin}
               navigation={navigation}
+              isLoading={isLoading}
             />
             <View style={{ backgroundColor: "#fff" }}>
               <View style={styles.straightLine}></View>
@@ -145,18 +124,14 @@ const Login = ({ navigation }) => {
               </View>
             </View>
 
-            {/* <Pressable
-              style={styles.guestContainer}
-              onPress={() => navigation.navigate("GuestLogin")}
-            >
-              <Text style={styles.guestText}>Login as Guest</Text>
-            </Pressable> */}
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
+
 export default Login;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -174,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1f255e", // fallback bg for Android elevation
+    backgroundColor: "#1f255e",
     ...Platform.select({
       ios: {
         shadowColor: COLORS.primaryFontColor,
@@ -186,11 +161,6 @@ const styles = StyleSheet.create({
         elevation: 8,
       },
     }),
-  },
-  image: {
-    width: 70,
-    height: 70,
-    zIndex: 1,
   },
   subContainer: {
     padding: 30,
@@ -248,12 +218,18 @@ const styles = StyleSheet.create({
   },
   guestContainer: {
     display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e9eaee",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 8,
     marginTop: 20,
   },
   guestText: {
     color: COLORS.primaryFontColor,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: "Manrope-Medium",
   },
 });

@@ -6,9 +6,11 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  Alert,
 } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { Button, Input } from './global';
+import Button from '../components/global/Button';
+import Input from '../components/global/Input';
 
 const screenHeight = Dimensions.get("window").height;
 
@@ -47,8 +49,7 @@ const ResetPassword = () => {
         alert(data.message);
       }
     } catch (err) {
-      console.error(err);
-      alert('Something went wrong. Please try again.');
+      Alert.alert('Error', 'Something went wrong. Please try again.');
     }
   };
 

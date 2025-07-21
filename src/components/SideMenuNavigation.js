@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState, useCallback } from "react";
 import { COLORS } from "../constants/colors";
-import { Button } from "./global";
+import Button from "./global/Button";
 import DashboardIcon from "../../assets/icons/dashboardMenu.svg";
 import ActiveDashboard from "../../assets/icons/activeDashboard.svg";
 import UsageIcon from "../../assets/icons/usageMenu.svg";
@@ -259,7 +259,7 @@ const SideMenuNavigation = ({ navigation }) => {
         <Button
           title="Logout"
           variant="ghost"
-          size="medium"
+          size="small"
           onPress={handleLogout}
           style={styles.logoutButton}
           textStyle={styles.logoutText}
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     flexDirection: "row",
-    padding: 10,
+    // padding: 10,
     alignItems: "center",
     justifyContent: "flex-start",
   },

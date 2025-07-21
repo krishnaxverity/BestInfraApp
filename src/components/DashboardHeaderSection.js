@@ -21,7 +21,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Easing } from "react-native-reanimated";
 import { getUser } from "../utils/storage";
-import { Image } from "./global";
+import Logo from "./global/Logo";
 
 const { width, height } = Dimensions.get("window");
 
@@ -102,14 +102,15 @@ const DashboardHeaderSection = ({ navigation }) => {
             {Array.from({ length: RING_COUNT }).map((_, index) => (
               <Ring key={index} index={index} progress={progress} />
             ))}
-            <BiLogo width={45} height={45} />
+            {/* <BiLogo width={45} height={45} /> */}
+            <Logo variant="blue" size="medium" />
           </View>
           <Pressable
             style={styles.bellIcon}
             onPress={() => navigation.navigate("Profile")}
           >
             {/* <Notification width={18} height={18} fill="#202d59" /> */}
-            <Image icon={Notification} size={18} fill="#202d59" />
+            <Notification width={18} height={18} fill="#202d59" />
           </Pressable>
         </View>
         <View style={styles.ProfileBox}>
